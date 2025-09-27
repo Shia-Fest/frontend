@@ -8,6 +8,7 @@ import CertificatePage from './pages/CertificateViewPage';
 
 // 1. Import the necessary components from react-router-dom
 import Navbar from './components/Navbar';
+import HomePage from './pages/HomePage';
 
 
 // Simple Navbar component for navigation
@@ -19,10 +20,11 @@ function App() {
         <Navbar />
         
         <main className="py-8">
+          <HomePage />
           {/* The <Routes> component manages which page to show based on the URL */}
           <Routes>
             {/* Main Pages */}
-            <Route path="/" element={<LeaderboardsPage />} />
+            <Route path="/leaderboard" element={<LeaderboardsPage />} />
             <Route path="/programmes" element={<ProgrammesPage />} />
             <Route path="/search" element={<SearchPage />} />
 
