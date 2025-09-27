@@ -54,7 +54,7 @@ const LeaderboardsPage = () => {
         <tr key={student._id} className={getRankClass(index)}>
             <td className="px-6 py-4 text-sm text-gray-900 text-center w-16">{index + 1}</td>
             <td className="px-6 py-4 text-sm font-medium text-gray-900 flex items-center">
-                <img src={student.image.url} alt={student.name} className="w-10 h-10 rounded-full mr-4 object-cover border-2 border-gray-200" />
+                <img style={{ width: '40px', height:'40px'}} src={student.image.url} alt={student.name} className="rounded-full mr-4 object-cover border-2 border-gray-200" />
                 <span>{student.name}</span>
             </td>
             <td className="px-6 py-4 text-sm text-gray-600">{student.team?.name || 'N/A'}</td>

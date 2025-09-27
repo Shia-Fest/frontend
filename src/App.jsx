@@ -1,18 +1,46 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-import LeaderBoardTable from './components/LeaderboardTable'
-import LeaderboardTablePage from './pages/LeaderboardsPage'
-function App() {
+import React from 'react';
+import { BrowserRouter, Routes, Route, Link, NavLink } from 'react-router-dom';
+import ProgrammesPage from './pages/ProgrammeListPage';
+import LeaderboardsPage from './pages/LeaderboardsPage';
+import ResultsPage from './pages/ResultPage'
+import SearchPage from './pages/CandidateSearchPage';
+import CertificatePage from './pages/CertificateViewPage';
 
+// 1. Import the necessary components from react-router-dom
+import Navbar from './components/Navbar';
+
+
+// Simple Navbar component for navigation
+function App() {
   return (
-    <div className="bg-[#039d67] min-h-screen flex items-center justify-center noise-container">
-      <div className=' shadow'>
+    // The entire application is wrapped in <BrowserRouter> to enable routing
+    <BrowserRouter>
+      <div className="min-h-screen bg-gray-50 font-sans">
+        <Navbar />
+        
+        <main className="py-8">
+          {/* The <Routes> component manages which page to show based on the URL */}
+          <Routes>
+            {/* Main Pages */}
+            <Route path="/" element={<LeaderboardsPage />} />
+            <Route path="/programmes" element={<ProgrammesPage />} />
+            <Route path="/search" element={<SearchPage />} />
+
+            {/* Nested/Dynamic Pages */}
+            <Route path="/programmes/:programmeId/results" element={<ResultsPage />} />
+            <Route path="/programmes/:programmeId/results/:resultId/certificate" element={<CertificatePage />} />
+          </Routes>
+        </main>
+
+        <footer className="bg-white mt-12 py-6">
+          <div className="container mx-auto text-center text-gray-500">
+            &copy; 2025 Shia Fest. All rights reserved.
+          </div>
+        </footer>
       </div>
-      <LeaderboardTablePage />
-    </div>
-  )
+    </BrowserRouter>
+  );
 }
 
-export default App
+export default App;
+
