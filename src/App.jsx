@@ -24,6 +24,7 @@ function App() {
           {/* The <Routes> component manages which page to show based on the URL */}
           <Routes>
             {/* Main Pages */}
+            <Route path='/' element={<HomePage />} /> 
             <Route path="/leaderboard" element={<LeaderboardsPage />} />
             <Route path="/programmes" element={<ProgrammesPage />} />
             <Route path="/search" element={<SearchPage />} />
