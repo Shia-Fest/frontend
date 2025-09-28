@@ -1,15 +1,18 @@
 import React from 'react';
-import { NavLink, Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 const Navbar = () => {
     return (
         <header className="py-4">
-            <nav className="container mx-auto px-4 grid grid-cols-1 md:grid-cols-3 items-center justify-items-center md:justify-items-stretch">
+            {/*
+              THE FIX: A Simple, Centered Grid
+              - grid: Establishes this as a grid container.
+              - justify-items-center: A powerful class that centers all items inside the grid horizontally.
+            */}
+            <nav className="container mx-auto px-4 grid justify-items-center">
                 
-
-
-                {/* THE FIX IS ON THIS LINE: Changed p-2 to py-2 px-4 */}
-                <ul className="bg-white/70 backdrop-blur-md py-2 px-4 rounded-full shadow-md flex items-center space-x-1 sm:space-x-2">
+                {/* The navigation pill is the only item in the grid, so it will now be perfectly centered. */}
+                <ul className="bg-white/70 backdrop-blur-md p-2 rounded-full shadow-md flex items-center space-x-1 sm:space-x-2">
                     <li>
                         <NavLink 
                             to="/" 
@@ -56,18 +59,14 @@ const Navbar = () => {
                                 }`
                             }
                         >
-                            <i class="fa fa-search"></i>
+                            <i className="fa fa-search"></i> {/* Assuming you have Font Awesome for the icon */}
                         </NavLink>
                     </li>
                 </ul>
 
-                <div className="hidden md:block md:justify-self-end">
-                    {/* Intentionally empty for balance */}
-                </div>
             </nav>
         </header>
     );
 };
 
 export default Navbar;
-
