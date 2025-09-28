@@ -11,7 +11,7 @@ const HomePage = () => {
             <div className="flex flex-col items-center text-center">
                 
                 <img 
-                    src="/logo.png" // This path points to your 'public' folder
+                    src="/images/logo.png" 
                     alt="College Logo" 
                     className="w-62 mb-6 md:shadow-2xl" 
                 />
