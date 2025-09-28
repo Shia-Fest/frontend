@@ -11,35 +11,25 @@ import Navbar from './components/Navbar';
 import HomePage from './pages/HomePage';
 import Footer from './components/Footer';
 
-
-// Simple Navbar component for navigation
 function App() {
   return (
-    // The entire application is wrapped in <BrowserRouter> to enable routing
     <BrowserRouter>
-      <div className="min-h-screen bg-gray-50 font-sans">
+      {/* This main div acts as the container for our entire application */}
+      <div className="bg-gray-50 font-sans">
         <Navbar />
-        
-        <main className="py-8">
-          <HomePage />
-          {/* The <Routes> component manages which page to show based on the URL */}
+        <main>
           <Routes>
-            {/* Main Pages */}
-            <Route path='/' element={<HomePage />} /> 
-            <Route path="/leaderboard" element={<LeaderboardsPage />} />
+            <Route path="/" element={<HomePage />} />
+            <Route path="/leaderboards" element={<LeaderboardsPage />} />
             <Route path="/programmes" element={<ProgrammesPage />} />
             <Route path="/search" element={<SearchPage />} />
-
-            {/* Nested/Dynamic Pages */}
             <Route path="/programmes/:programmeId/results" element={<ResultsPage />} />
             <Route path="/programmes/:programmeId/results/:resultId/certificate" element={<CertificatePage />} />
           </Routes>
         </main>
-        <Footer />
       </div>
     </BrowserRouter>
   );
 }
 
 export default App;
-

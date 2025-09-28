@@ -68,7 +68,7 @@ const ProgrammesPage = () => {
     }
 
     return (
-        <div className="container mx-auto p-4 md:p-8">
+        <div className="container mx-auto p-4 md:p-8 my-15">
             <h1 className="text-4xl md:text-5xl font-extrabold text-center text-gray-800 mb-8">
                 Festival Programmes
             </h1>

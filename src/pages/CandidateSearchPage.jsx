@@ -53,8 +53,8 @@ const SearchPage = () => {
             <div className="container mx-auto p-4 md:p-8">
                 <h1 className="text-4xl font-extrabold text-center text-gray-800 mb-6">Candidate Search</h1>
                 <form onSubmit={handleSearch} className="max-w-xl mx-auto flex gap-2">
-                    <input type="text" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} placeholder="Enter name or admission number..." className="flex-grow px-4 py-2 border rounded-md shadow-sm"/>
-                    <button type="submit" disabled={loading} className="px-6 py-2 font-semibold text-white bg-blue-600 rounded-md hover:bg-blue-700 disabled:bg-gray-400">{loading ? '...' : 'Search'}</button>
+                    <input type="text" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} placeholder="Enter name or admission number..." className="flex-grow px-4 py-2 border border-yellow-400 rounded-md shadow-sm active:border-yellow-400"/>
+                    <button type="submit" disabled={loading} className="px-6 py-2 font-semibold text-white bg-yellow-400 rounded-md hover:bg-yellow-700 disabled:bg-gray-400">{loading ? '...' : 'Search'}</button>
                 </form>
 
                 <div className="max-w-xl mx-auto mt-8">

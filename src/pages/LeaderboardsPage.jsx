@@ -3,7 +3,7 @@ import LeaderBoardTable from "../components/LeaderboardTable";
 import api from '../services/api';
 
 const Spinner = () => (
-    <div className="flex justify-center items-center p-10">
+    <div className="flex justify-center items-center p-10 my-15">
         <svg className="animate-spin -ml-1 mr-3 h-10 w-10 text-blue-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
             <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
             <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
@@ -69,7 +69,7 @@ const LeaderboardsPage = () => {
     if (error) return <div className="text-center p-10 text-red-500 bg-red-50 rounded-lg max-w-md mx-auto mt-10">{error}</div>;
 
     return (
-        <div className="bg-gray-50 min-h-screen">
+        <div className="bg-gray-50 min-h-screen my-15">
             <div className="container mx-auto p-4 sm:p-6 lg:p-8">
                 <header className="text-center mb-10">
                     <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-gray-800">
