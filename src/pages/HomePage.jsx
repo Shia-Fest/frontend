@@ -5,7 +5,7 @@ const HomePage = () => {
     return (
         <section 
             className="min-h-screen bg-cover bg-center grid grid-cols-1 md:grid-cols-1 " 
-            style={{ backgroundImage: "url('/src/assets/images/bg.jpg')" }}
+            style={{ backgroundImage: "url('/images/bg.jpg')" }}
         >
             <div className='min-h-screen grid place-items-center p-4 '>
             <div className="flex flex-col items-center text-center">
