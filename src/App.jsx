@@ -9,6 +9,7 @@ import CertificatePage from './pages/CertificateViewPage';
 // 1. Import the necessary components from react-router-dom
 import Navbar from './components/Navbar';
 import HomePage from './pages/HomePage';
+import Footer from './components/Footer';
 
 
 // Simple Navbar component for navigation
@@ -34,12 +35,7 @@ function App() {
             <Route path="/programmes/:programmeId/results/:resultId/certificate" element={<CertificatePage />} />
           </Routes>
         </main>
-
-        <footer className="bg-white mt-12 py-6">
-          <div className="container mx-auto text-center text-gray-500">
-            &copy; 2025 Shia Fest. All rights reserved.
-          </div>
-        </footer>
+        <Footer />
       </div>
     </BrowserRouter>
   );
