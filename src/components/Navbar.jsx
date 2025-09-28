@@ -56,7 +56,7 @@ const Navbar = () => {
                                 }`
                             }
                         >
-                            Search
+                            <i class="fa fa-search"></i>
                         </NavLink>
                     </li>
                 </ul>
