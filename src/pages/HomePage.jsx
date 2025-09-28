@@ -5,13 +5,13 @@ const HomePage = () => {
     return (
         <section 
             className="min-h-screen bg-cover bg-center grid grid-cols-1 md:grid-cols-1 " 
-            style={{ backgroundImage: "url('/public/images/bg.jpg')" }}
+            style={{ backgroundImage: "url('/src/assets/images/bg.jpg')" }}
         >
             <div className='min-h-screen grid place-items-center p-4 '>
             <div className="flex flex-col items-center text-center">
                 
                 <img 
-                    src="/public/images/logo.png" // This path points to your 'public' folder
+                    src="/src/assets/images/logo.png" // This path points to your 'public' folder
                     alt="College Logo" 
                     className="w-62 mb-6 md:shadow-2xl" 
                 />
