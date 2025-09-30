@@ -20,7 +20,7 @@ const HomePage = () => {
                     USTAVERSE'25 
                 </p>
                 
-                <p className="mt-2 text-3xl md:text-4xl font-extrabold font-[poppins] tracking-tight text-white">
+                <p className="mt-2 text-3xl md:text-4xl font-semibold font-[poppins] tracking-tight text-white">
                     Moyilarity and modernity
                 </p>
 
