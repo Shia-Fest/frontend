@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import LeaderBoardTable from "../components/LeaderboardTable";
+import LeaderboardTable from "../components/LeaderboardTable";
 import api from '../services/api';
 
 const Spinner = () => (
@@ -25,89 +25,74 @@ const LeaderboardsPage = () => {
                 const { data } = await api.get('/leaderboards');
                 setLeaderboards(data);
             } catch (err) {
-                setError(err.response?.data?.message || 'Error fetching leaderboards. Please try again.');
+                setError('Failed to load leaderboards. Please try again later.');
             } finally {
                 setLoading(false);
             }
         };
         fetchLeaderboards();
     }, []);
-    
-    const getRankClass = (index) => {
-        switch(index) {
-            case 0: return 'bg-yellow-100 font-bold'; 
-            case 1: return 'bg-gray-200 font-semibold';
-            case 2: return 'bg-yellow-50';
-            default: return 'bg-white';
-        }
-    };
 
     const renderTeamRow = (team, index) => (
-        <tr key={team._id} className={getRankClass(index)}>
-            <td className="px-6 py-4 text-sm text-gray-900 text-center w-16">{index + 1}</td>
+        <tr key={team._id} className={index < 3 ? 'bg-yellow-50' : ''}>
+            <td className="px-6 py-4 text-sm font-bold text-gray-800">{index + 1}</td>
             <td className="px-6 py-4 text-sm font-medium text-gray-900">{team.name}</td>
-            <td className="px-6 py-4 text-sm font-extrabold text-blue-600 text-right">{team.totalPoints}</td>
+            <td className="px-6 py-4 text-sm font-extrabold text-blue-600">{team.totalPoints}</td>
         </tr>
     );
 
     const renderStudentRow = (student, index) => (
-        <tr key={student._id} className={getRankClass(index)}>
-            <td className="px-6 py-4 text-sm text-gray-900 text-center w-16">{index + 1}</td>
+        <tr key={student._id} className={index < 3 ? 'bg-green-50' : ''}>
+            <td className="px-6 py-4 text-sm font-bold text-gray-800">{index + 1}</td>
             <td className="px-6 py-4 text-sm font-medium text-gray-900 flex items-center">
-                <img style={{ width: '40px', height:'40px'}} src={student.image.url} alt={student.name} className="rounded-full mr-4 object-cover border-2 border-gray-200" />
-                <span>{student.name}</span>
+                <img src={student.image.url} alt={student.name} className="w-8 h-8 rounded-full mr-3 object-cover" />
+                {student.name}
             </td>
             <td className="px-6 py-4 text-sm text-gray-600">{student.team?.name || 'N/A'}</td>
-            <td className="px-6 py-4 text-sm font-extrabold text-blue-600 text-right">{student.totalPoints}</td>
+            <td className="px-6 py-4 text-sm font-extrabold text-blue-600">{student.totalPoints}</td>
         </tr>
     );
-    
-    // Helper to sort data before rendering
-    const sortData = (data) => data ? data.slice().sort((a, b) => b.totalPoints - a.totalPoints) : [];
 
-    if (loading) return <Spinner />;
-    if (error) return <div className="text-center p-10 text-red-500 bg-red-50 rounded-lg max-w-md mx-auto mt-10">{error}</div>;
+    if (loading) return <div className="text-center p-10">Loading Leaderboards...</div>;
+    if (error) return <div className="text-center p-10 text-red-500">{error}</div>;
 
     return (
-        <div className="bg-gray-50 min-h-screen my-15">
-            <div className="container mx-auto p-4 sm:p-6 lg:p-8">
-                <header className="text-center mb-10">
-                    <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-gray-800">
-                        Official Leaderboards
-                    </h1>
-                    <p className="mt-2 text-lg text-gray-500">Shia Fest 2025</p>
-                </header>
-                
-                <main className="space-y-12">
-                    <LeaderBoardTable 
-                        title="Team Rankings (Grand Total)" 
-                        headers={['Rank', 'Team Name', 'Total Points']}
-                        data={sortData(leaderboards?.teamLeaderboard)}
-                        renderRow={renderTeamRow}
-                    />
+        <div className="container mx-auto my-15 p-4 md:p-8 space-y-8">
+            <h1 className="text-4xl md:text-5xl font-extrabold text-center text-gray-800 ">Leaderboards</h1>
+            
+            {/* Grand Total Team Leaderboard */}
+            <LeaderboardTable 
+                title="🏆 Team Rankings (Top 4)"
+                headers={['Rank', 'Team Name', 'Total Points']}
+                // THE FIX IS HERE: We slice the array to get only the first 4 items.
+                data={leaderboards?.teamLeaderboard?.slice(0, 4)}
+                renderRow={renderTeamRow}
+            />
 
-                    <LeaderBoardTable 
-                        title="Top Students (Overall)"
-                        headers={['Rank', 'Student Name', 'Team', 'Total Points']}
-                        data={sortData(leaderboards?.overallTopStudents)}
-                        renderRow={renderStudentRow}
-                    />
+            {/* Overall Top Students Leaderboard */}
+            <LeaderboardTable 
+                title="🌟 Top Students (Overall Top 4)"
+                headers={['Rank', 'Student Name', 'Team', 'Total Points']}
+                // THE FIX IS HERE: Slicing the overall students array.
+                data={leaderboards?.overallTopStudents?.slice(0, 4)}
+                renderRow={renderStudentRow}
+            />
 
-                    <div className="space-y-8">
-                        <h2 className="text-3xl font-bold text-center text-gray-800">Top Students by Category</h2>
-                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
-                            {sortData(leaderboards?.categoryTopStudents).map(categoryData => (
-                                <LeaderBoardTable
-                                    key={categoryData.category} 
-                                    title={`${categoryData.category}`}
-                                    headers={['Rank', 'Student', 'Team', 'Points']}
-                                    data={sortData(categoryData.candidates)}
-                                    renderRow={renderStudentRow}
-                                />
-                            ))}
-                        </div>
-                    </div>
-                </main>
+            {/* Category-Specific Top Students Leaderboards */}
+            <div className="space-y-8">
+                <h2 className="text-3xl font-bold text-center text-gray-800">Top Students by Category (Top 4)</h2>
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    {leaderboards?.categoryTopStudents?.map(categoryData => (
+                         <LeaderboardTable 
+                            key={categoryData.category}
+                            title={`🏅 ${categoryData.category}`}
+                            headers={['Rank', 'Student Name', 'Team', 'Total Points']}
+                            // THE FIX IS HERE: Slicing the candidates array for each category.
+                            data={categoryData.candidates?.slice(0, 4)}
+                            renderRow={renderStudentRow}
+                        />
+                    ))}
+                </div>
             </div>
         </div>
     );
