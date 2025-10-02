@@ -49,6 +49,19 @@ const Navbar = () => {
                     </li>
                     <li>
                         <NavLink 
+                            to="/controllers" 
+                            className={({ isActive }) => 
+                                // THEME UPDATED: Changed from blue to yellow
+                                `block px-3 sm:px-4 py-2 rounded-full text-xs sm:text-sm font-semibold transition-colors duration-300 ${
+                                    isActive ? 'bg-yellow-400 text-white shadow-sm' : 'text-yellow-600 hover:bg-yellow-100'
+                                }`
+                            }
+                        >
+                            Coordinators
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink 
                             to="/search" 
                             className={({ isActive }) => 
                                 // THEME UPDATED: Changed from blue to yellow

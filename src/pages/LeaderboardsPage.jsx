@@ -166,53 +166,57 @@ const LeaderboardsPage = () => {
     };
 
 const renderStudentRow = (student, index) => {
-    const style = getRankStyle(index);
-    
-    return (
-        <div key={student._id} className={`rounded-xl p-6 mb-4 transform transition-all duration-300 hover:scale-105 ${style.container} ${style.glow}`}>
-            <div className="flex items-center justify-between">
-                <div className="flex items-center space-x-4 flex-1">
-                    <RankNumber index={index} />
-                    
-                    <div className="relative">
-                        <img 
-                            src={student.image.url} 
-                            alt={student.name} 
-                            className="w-14 h-14 rounded-2xl object-cover border-4 border-white shadow-lg"
-                        />
-                        {index < 3 && (
-                            <div className="absolute -top-2 -right-2 w-6 h-6 bg-white rounded-full flex items-center justify-center shadow-md">
-                                <span className="text-xs">⭐</span>
-                            </div>
-                        )}
-                    </div>
-                    
-                    <div className="flex-1">
-                        <h3 className="text-lg font-bold text-gray-800">{student.name}</h3>
-                        <div className="flex items-center space-x-2 mt-1">
-                            <span className="text-sm text-gray-600 bg-gray-100 px-3 py-1 rounded-full font-medium">
-                                {student.team?.name || 'Independent'}
-                            </span>
-                            {/* UPDATED: Changed admissionNumber to admissionNo */}
-                            <span className="text-xs font-mono text-blue-600 bg-blue-50 px-2 py-1 rounded border border-blue-200">
-                                Adm: {student.admissionNo || 'N/A'}
-                            </span>
-                            {index < 3 && (
-                                <span className="text-xs font-semibold px-2 py-1 rounded-full bg-white/80 text-gray-700">
-                                    {index === 0 ? 'Gold Medalist' : index === 1 ? 'Silver Medalist' : 'Bronze Medalist'}
-                                </span>
-                            )}
-                        </div>
-                    </div>
-                </div>
-                
-                <div className="text-right">
-                    <div className={`text-2xl ${style.points}`}>{student.totalPoints}</div>
-                    <div className="text-sm text-gray-500 font-medium">points</div>
-                </div>
-            </div>
-        </div>
-    );
+    const style = getRankStyle(index);
+    
+    return (
+        <div key={student._id} className={`rounded-xl p-4 sm:p-6 mb-4 transform transition-all duration-300 hover:scale-105 ${style.container} ${style.glow}`}>
+            <div className="flex items-center justify-between">
+                <div className="flex items-center space-x-3 sm:space-x-4 flex-1 min-w-0"> {/* Added min-w-0 to prevent overflow */}
+                    <RankNumber index={index} />
+                    
+                    {/* CHANGE 1: Added flex-shrink-0 to this container */}
+                    <div className="relative flex-shrink-0"> 
+                        <img
+                              src={student.image.url}
+                              alt={student.name}
+                              // CHANGE 2: Replaced responsive width with fixed size
+                              className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl object-cover border-4 border-white shadow-lg"
+                            />
+
+                        {index < 3 && (
+                            <div className="absolute -top-2 -right-2 w-6 h-6 bg-white rounded-full flex items-center justify-center shadow-md">
+                                <span className="text-xs">⭐</span>
+                            </div>
+                        )}
+                    </div>
+                    
+                    {/* Added min-w-0 here to allow text to truncate if needed */}
+                    <div className="flex-1 min-w-0"> 
+                        {/* Made name text responsive and able to truncate */}
+                        <h3 className="text-base sm:text-lg font-bold text-gray-800 truncate">{student.name}</h3>
+                        <div className="flex items-center flex-wrap gap-2 mt-1"> {/* Added flex-wrap and gap */}
+                            <span className="text-sm text-gray-600 bg-gray-100 px-3 py-1 rounded-full font-medium">
+                                {student.team?.name || 'Independent'}
+                            </span>
+                            <span className="text-xs font-mono text-blue-600 bg-blue-50 px-2 py-1 rounded border border-blue-200">
+                                Adm: {student.admissionNo || 'N/A'}
+                            </span>
+                            {index < 3 && (
+                                <span className="text-xs font-semibold px-2 py-1 rounded-full bg-white/80 text-gray-700">
+                                    {index === 0 ? 'Gold Medalist' : index === 1 ? 'Silver Medalist' : 'Bronze Medalist'}
+                                </span>
+                            )}
+                        </div>
+                    </div>
+                </div>
+                
+                <div className="text-right">
+                    <div className={`text-xl sm:text-2xl ${style.points}`}>{student.totalPoints}</div>
+                    <div className="text-sm text-gray-500 font-medium">points</div>
+                </div>
+            </div>
+        </div>
+    );
 };
 
     const PodiumDisplay = ({ data, type = 'teams' }) => {

@@ -10,6 +10,7 @@ import CertificatePage from './pages/CertificateViewPage';
 import Navbar from './components/Navbar';
 import HomePage from './pages/HomePage';
 import Footer from './components/Footer';
+import ControllersPage from './pages/contorollersPage';
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
             <Route path="/search" element={<SearchPage />} />
             <Route path="/programmes/:programmeId/results" element={<ResultsPage />} />
             <Route path="/programmes/:programmeId/results/:resultId/certificate" element={<CertificatePage />} />
+            <Route path='/controllers' element={ControllersPage} />
           </Routes>
         </main>
       </div>
