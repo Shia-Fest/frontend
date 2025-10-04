@@ -47,7 +47,7 @@ const Navbar = () => {
                             Programmes
                         </NavLink>
                     </li>
-                    <li>
+                    {/* <li>
                         <NavLink 
                             to="/controllers" 
                             className={({ isActive }) => 
@@ -59,7 +59,7 @@ const Navbar = () => {
                         >
                             Coordinators
                         </NavLink>
-                    </li>
+                    </li> */}
                     <li>
                         <NavLink 
                             to="/search" 
