@@ -68,7 +68,7 @@ const SearchPage = () => {
                                     <div>
                                         <h3 className="text-lg font-bold text-gray-800">{candidate.name}</h3>
                                         <p className="text-sm text-gray-600">Admission No: {candidate.admissionNo}</p>
-                                        <p className="text-sm text-gray-500">Team: {candidate.team.name}</p>
+                                        <p className="text-sm text-gray-500">Team: {candidate.team?.name}</p>
                                     </div>
                                 </div>
                             ))}
@@ -86,7 +86,7 @@ const SearchPage = () => {
             <div className="text-center mb-8">
                 <img src={selectedCandidate.image.url} alt={selectedCandidate.name} className="w-24 h-24 rounded-full object-cover border-4 border-white shadow-lg mx-auto" />
                 <h1 className="text-3xl font-bold text-gray-800 mt-4">{selectedCandidate.name}</h1>
-                <p className="text-gray-500">{selectedCandidate.team.name}</p>
+                <p className="text-gray-500">{selectedCandidate.team?.name}</p>
             </div>
             
             <h2 className="text-2xl font-bold text-center text-gray-700 mb-6">Achievements</h2>
@@ -95,27 +95,29 @@ const SearchPage = () => {
             {!loadingResults && candidateResults.length > 0 && (
                 <div className="max-w-2xl mx-auto space-y-3">
                     {candidateResults.map(result => (
-                        <div key={result._id} className="bg-white p-4 rounded-lg shadow-md flex justify-between items-center">
-                            <div>
-                                <p className="font-bold">{result.programme.name}</p>
-                                <p className="text-sm text-gray-600">
-                                    {result.rank && `Rank: ${result.rank}`}
-                                    {result.rank && result.grade && ' | '}
-                                    {result.grade && `Grade: ${result.grade}`}
-                                </p>
+                        // Only render the result if the 'programme' data exists to avoid showing empty items
+                        result.programme && (
+                            <div key={result._id} className="bg-white p-4 rounded-lg shadow-md flex justify-between items-center">
+                                <div>
+                                    {/* Safely access the programme name with optional chaining */}
+                                    <p className="font-bold">{result.programme?.name || 'Programme data unavailable'}</p>
+                                    <p className="text-sm text-gray-600">
+                                        {result.rank && `Rank: ${result.rank}`}
+                                        {result.rank && result.grade && ' | '}
+                                        {result.grade && `Grade: ${result.grade}`}
+                                    </p>
+                                </div>
+                                {/* Safely create the link with optional chaining */}
+                                <Link to={`/programmes/${result.programme?._id}/results/${result._id}/certificate`} className="px-4 py-2 text-sm font-semibold text-white bg-green-600 rounded-md hover:bg-green-700">
+                                    View Certificate
+                                </Link>
                             </div>
-                            <Link to={`/programmes/${result.programme._id}/results/${result._id}/certificate`} className="px-4 py-2 text-sm font-semibold text-white bg-green-600 rounded-md hover:bg-green-700">
-                                View Certificate
-                            </Link>
-                        </div>
+                        )
                     ))}
-
                 </div>
-
             )}
         </div>
     );
 };
 
 export default SearchPage;
-
