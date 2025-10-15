@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react';  
 import { Link } from 'react-router-dom';
 
 const HomePage = () => {
@@ -16,13 +16,13 @@ const HomePage = () => {
                     className="w-62 mb-6 md:shadow-2xl" 
                 />
                 
-                <p className="text-3xl md:text-5xl text-white font-extrabold font-[poppins] tracking-wider">
+                <h1 className="text-3xl md:text-5xl text-white font-extrabold font-[poppins] tracking-wider">
                     USTAVERSE'25 
-                </p>
+                </h1>
                 
-                <p className="mt-2 text-3xl md:text-4xl font-semibold font-[poppins] tracking-tight text-white">
+                <h2 className="mt-2 text-3xl md:text-4xl font-semibold font-[poppins] tracking-tight text-white">
                     Moyilarity and modernity
-                </p>
+                </h2>
 
                 {/* Optional: A Call-to-Action Button */}
                 <div className="mt-10">

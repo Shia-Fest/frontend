@@ -5,6 +5,13 @@
     <priority>1.0</priority>
   </url>
   <url>
+    <loc>https://www.hudafestival.in/leaderboard</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.hudafestival.in/programmes</loc>
+    <priority>0.8</priority>
+  </url>
     <loc>https://www.hudafestival.in/search</loc>
     <priority>0.8</priority>
   </url>
